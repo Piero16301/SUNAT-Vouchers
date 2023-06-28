@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1058631573511",
+    "project_id": "sunat-vouchers",
+    "storage_bucket": "sunat-vouchers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058631573511:android:efd205623c210574fc8aa2",
+        "android_client_info": {
+          "package_name": "com.example.verygoodcore.sunat_vouchers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058631573511-k3q7hqkufdvu9t2j820rq87k53135acb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.verygoodcore.sunat_vouchers",
+            "certificate_hash": "cb8a5e87dbb4cafb234040217337ea69940036af"
+          }
+        },
+        {
+          "client_id": "1058631573511-f65gj9tej0ftqao2hsfu4mu6olj4th2h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG0Fg-8D4zYWTZdZ2M6YyF5bXl6Z-Z0nQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058631573511-f65gj9tej0ftqao2hsfu4mu6olj4th2h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
