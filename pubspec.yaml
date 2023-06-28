@@ -37,3 +37,16 @@ flutter:
   generate: true
   assets:
     - assets/images/
+  fonts:
+    - family: Ubuntu-Bold
+      fonts:
+        - asset: assets/fonts/Ubuntu-Bold.ttf
+    - family: Ubuntu-Light
+      fonts:
+        - asset: assets/fonts/Ubuntu-Light.ttf
+    - family: Ubuntu-Medium
+      fonts:
+        - asset: assets/fonts/Ubuntu-Medium.ttf
+    - family: Ubuntu-Regular
+      fonts:
+        - asset: assets/fonts/Ubuntu-Regular.ttf

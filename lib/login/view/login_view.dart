@@ -42,21 +42,33 @@ class GoogleSignInButtonLogin extends StatelessWidget {
           AuthStateChangeAction<SignedIn>((context, signedIn) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Sesión iniciada con ${signedIn.user}'),
+                content: Text(
+                  'Bienvenido ${signedIn.user!.displayName}',
+                  textAlign: TextAlign.center,
+                ),
+                duration: const Duration(seconds: 3),
               ),
             );
           }),
           AuthStateChangeAction<UserCreated>((context, userCreated) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Usuario creado ${userCreated.credential.user}'),
+                content: Text(
+                  'Bienvenido ${userCreated.credential.user!.displayName}',
+                  textAlign: TextAlign.center,
+                ),
+                duration: const Duration(seconds: 3),
               ),
             );
           }),
           AuthStateChangeAction<AuthFailed>((context, error) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Error ${error.exception}'),
+                content: Text(
+                  'Error ${error.exception}',
+                  textAlign: TextAlign.center,
+                ),
+                duration: const Duration(seconds: 3),
               ),
             );
           }),
