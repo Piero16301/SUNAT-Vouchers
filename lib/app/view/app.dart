@@ -1,22 +1,48 @@
+import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:sunat_vouchers/counter/counter.dart';
-import 'package:sunat_vouchers/l10n/l10n.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:go_router/go_router.dart';
+
+class LabelOverrides extends DefaultLocalizations {
+  const LabelOverrides();
+
+  @override
+  String get registerText => 'Registrarse';
+
+  @override
+  String get registerHintText => '¿No tienes una cuenta?';
+
+  @override
+  String get signInText => 'Iniciar sesión';
+
+  @override
+  String get signInHintText => '¿Ya tienes una cuenta?';
+
+  @override
+  String get signInWithGoogleButtonText => 'Iniciar sesión con Google';
+}
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({
+    required GoRouter router,
+    super.key,
+  }) : _router = router;
+
+  final GoRouter _router;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-        colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
-        ),
-      ),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+    return MaterialApp.router(
+      routeInformationProvider: _router.routeInformationProvider,
+      routerDelegate: _router.routerDelegate,
+      routeInformationParser: _router.routeInformationParser,
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: [
+        FirebaseUILocalizations.withDefaultOverrides(const LabelOverrides()),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        FirebaseUILocalizations.delegate,
+      ],
     );
   }
 }
