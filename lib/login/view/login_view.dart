@@ -36,7 +36,7 @@ class GoogleSignInButtonLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 241,
+      height: 110,
       child: SignInScreen(
         actions: [
           AuthStateChangeAction<SignedIn>((context, signedIn) {

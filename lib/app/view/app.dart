@@ -20,6 +20,15 @@ class LabelOverrides extends DefaultLocalizations {
 
   @override
   String get signInWithGoogleButtonText => 'Iniciar sesión con Google';
+
+  @override
+  String get signInMethods => 'Métodos de inicio de sesión';
+
+  @override
+  String get signOutButtonText => 'Cerrar sesión';
+
+  @override
+  String get deleteAccount => 'Eliminar cuenta';
 }
 
 class App extends StatelessWidget {
