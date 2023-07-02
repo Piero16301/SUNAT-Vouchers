@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:sunat_vouchers/models/models.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -28,24 +31,59 @@ class HomeView extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            children: List.generate(
-              6,
-              (index) => VoucherCardItemHome(
-                ruc: '12345678901',
-                socialReason: 'Empresa S.A.C.',
-                voucherType: 'Factura',
-                serial: 'F001',
-                number: '00000001',
-                date: DateTime.now(),
-                amount: 100.97,
-                statusRuc: true,
-                statusVoucher: false,
-              ),
-            ),
-          ),
+        child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('vouchers')
+              .where(
+                'userUid',
+                isEqualTo: FirebaseAuth.instance.currentUser!.uid,
+              )
+              .orderBy('date', descending: true)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data!.docs.isEmpty) {
+                return Center(
+                  child: Text(
+                    'No hay comprobantes'.toUpperCase(),
+                    style: const TextStyle(
+                      fontFamily: 'Ubuntu-Regular',
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                );
+              }
+
+              return ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) {
+                  final baseVoucher = snapshot.data!.docs[index].data()!
+                      as Map<String, dynamic>;
+                  final voucher = Voucher.fromJson(baseVoucher);
+
+                  return VoucherCardItemHome(
+                    ruc: voucher.ruc,
+                    socialReason: voucher.socialReason,
+                    voucherType: voucher.voucherType,
+                    serial: voucher.serial,
+                    number: voucher.number,
+                    date: voucher.date,
+                    amount: voucher.amount,
+                    statusRuc: voucher.statusRuc,
+                    statusVoucher: voucher.statusVoucher,
+                  );
+                },
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: Theme.of(context).primaryColor,
+                ),
+              );
+            }
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
