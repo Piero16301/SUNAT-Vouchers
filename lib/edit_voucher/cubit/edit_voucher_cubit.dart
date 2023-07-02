@@ -82,26 +82,21 @@ class EditVoucherCubit extends Cubit<EditVoucherState> {
     emit(state.copyWith(updateStatus: UpdateStatus.loading));
 
     try {
-      // Construir voucher
-      final voucher = Voucher(
-        id: state.voucherId,
-        userUid: state.userUid,
-        ruc: state.ruc,
-        socialReason: 'POR VERIFICAR',
-        voucherType: state.voucherType,
-        serial: state.serial,
-        number: state.number,
-        date: state.date!,
-        amount: state.amount,
-        statusRuc: false,
-        statusVoucher: false,
-      );
-
       // Actualizar datos del comprobante
       FirebaseFirestore.instance
           .collection('vouchers')
-          .doc(voucher.id)
-          .update(voucher.toJson());
+          .doc(state.voucherId)
+          .update({
+        'ruc': state.ruc,
+        'socialReason': 'POR VERIFICAR',
+        'voucherType': state.voucherType,
+        'serial': state.serial,
+        'number': state.number,
+        'date': state.date,
+        'amount': state.amount,
+        'statusRuc': false,
+        'statusVoucher': false,
+      });
 
       emit(state.copyWith(updateStatus: UpdateStatus.success));
     } catch (e) {

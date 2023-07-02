@@ -154,7 +154,7 @@ class VoucherCardItemHome extends StatelessWidget {
           },
         ),
         child: SizedBox(
-          height: 206,
+          height: 229,
           width: double.infinity,
           child: Card(
             color: Colors.grey[100],
@@ -231,14 +231,16 @@ class VoucherCardItemHome extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(
-                        socialReason,
-                        style: const TextStyle(
-                          fontFamily: 'Ubuntu-Regular',
-                          fontSize: 16,
+                      Expanded(
+                        child: Text(
+                          socialReason,
+                          style: const TextStyle(
+                            fontFamily: 'Ubuntu-Regular',
+                            fontSize: 16,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
                         ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
                       ),
                     ],
                   ),
