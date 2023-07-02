@@ -87,7 +87,13 @@ class HomeView extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        elevation: 0,
+        onPressed: () => context.pushNamed(
+          'newVoucher',
+          pathParameters: {
+            'userId': FirebaseAuth.instance.currentUser!.uid,
+          },
+        ),
         backgroundColor: Theme.of(context).primaryColor,
         label: const Text(
           'Nuevo',
@@ -141,9 +147,12 @@ class VoucherCardItemHome extends StatelessWidget {
         width: double.infinity,
         child: Card(
           color: Colors.grey[100],
-          elevation: 1,
+          elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
+            side: const BorderSide(
+              color: Colors.grey,
+            ),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
