@@ -18,7 +18,7 @@ class NewVoucherState extends Equatable {
     this.userId = '',
     this.formKey,
     this.ruc = '',
-    this.voucherType = 'Factura',
+    this.voucherType = 'Factura', // Boleta: 03, Factura: 01
     this.serial = '',
     this.number = '',
     this.date,

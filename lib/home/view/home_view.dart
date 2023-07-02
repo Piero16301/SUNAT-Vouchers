@@ -64,6 +64,7 @@ class HomeView extends StatelessWidget {
                   final voucher = Voucher.fromJson(baseVoucher);
 
                   return VoucherCardItemHome(
+                    voucherId: voucher.id,
                     ruc: voucher.ruc,
                     socialReason: voucher.socialReason,
                     voucherType: voucher.voucherType,
@@ -116,6 +117,7 @@ class HomeView extends StatelessWidget {
 
 class VoucherCardItemHome extends StatelessWidget {
   const VoucherCardItemHome({
+    required this.voucherId,
     required this.ruc,
     required this.socialReason,
     required this.voucherType,
@@ -128,6 +130,7 @@ class VoucherCardItemHome extends StatelessWidget {
     super.key,
   });
 
+  final String voucherId;
   final String ruc;
   final String socialReason;
   final String voucherType;
@@ -142,260 +145,269 @@ class VoucherCardItemHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
-      child: SizedBox(
-        height: 206,
-        width: double.infinity,
-        child: Card(
-          color: Colors.grey[100],
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-            side: const BorderSide(
-              color: Colors.grey,
+      child: InkWell(
+        onTap: () => context.pushNamed(
+          'editVoucher',
+          pathParameters: {
+            'userId': FirebaseAuth.instance.currentUser!.uid,
+            'voucherId': voucherId,
+          },
+        ),
+        child: SizedBox(
+          height: 206,
+          width: double.infinity,
+          child: Card(
+            color: Colors.grey[100],
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: const BorderSide(
+                color: Colors.grey,
+              ),
             ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          const Text(
-                            'RUC: ',
-                            style: TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Row(
+                          children: [
+                            const Text(
+                              'RUC: ',
+                              style: TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          Text(
-                            ruc,
-                            style: const TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
+                            Text(
+                              ruc,
+                              style: const TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          const Text(
-                            'Tipo: ',
-                            style: TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Tipo: ',
+                              style: TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          Text(
-                            voucherType,
-                            style: const TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
+                            Text(
+                              voucherType,
+                              style: const TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 5),
-                Row(
-                  children: [
-                    const Text(
-                      'Razón Social: ',
-                      style: TextStyle(
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
+                    children: [
+                      const Text(
+                        'Razón Social: ',
+                        style: TextStyle(
+                          fontFamily: 'Ubuntu-Regular',
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        socialReason,
+                        style: const TextStyle(
+                          fontFamily: 'Ubuntu-Regular',
+                          fontSize: 16,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Serie: ',
+                              style: TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              serial,
+                              style: const TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Número: ',
+                              style: TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              number,
+                              style: const TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Fecha: ',
+                              style: TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              DateFormat('dd/MM/yyyy').format(date),
+                              style: const TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Monto: ',
+                              style: TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              amount.toStringAsFixed(2),
+                              style: const TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: Text(
+                      'Estado'.toUpperCase(),
+                      style: const TextStyle(
                         fontFamily: 'Ubuntu-Regular',
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      socialReason,
-                      style: const TextStyle(
-                        fontFamily: 'Ubuntu-Regular',
-                        fontSize: 16,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 5),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          const Text(
-                            'Serie: ',
-                            style: TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            serial,
-                            style: const TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          const Text(
-                            'Número: ',
-                            style: TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            number,
-                            style: const TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 5),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          const Text(
-                            'Fecha: ',
-                            style: TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            DateFormat('dd/MM/yyyy').format(date),
-                            style: const TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          const Text(
-                            'Monto: ',
-                            style: TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            amount.toStringAsFixed(2),
-                            style: const TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Center(
-                  child: Text(
-                    'Estado'.toUpperCase(),
-                    style: const TextStyle(
-                      fontFamily: 'Ubuntu-Regular',
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
                   ),
-                ),
-                const SizedBox(height: 5),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            statusRuc
-                                ? Icons.check_circle
-                                : Icons.cancel_outlined,
-                            color: statusRuc ? Colors.green : Colors.red,
-                            size: 20,
-                          ),
-                          const Text(
-                            ' RUC',
-                            style: TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
+                  const SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              statusRuc
+                                  ? Icons.check_circle
+                                  : Icons.cancel_outlined,
+                              color: statusRuc ? Colors.green : Colors.red,
+                              size: 20,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            statusVoucher
-                                ? Icons.check_circle
-                                : Icons.cancel_outlined,
-                            color: statusVoucher ? Colors.green : Colors.red,
-                            size: 20,
-                          ),
-                          const Text(
-                            ' Comprobante',
-                            style: TextStyle(
-                              fontFamily: 'Ubuntu-Regular',
-                              fontSize: 16,
+                            const Text(
+                              ' RUC',
+                              style: TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              statusVoucher
+                                  ? Icons.check_circle
+                                  : Icons.cancel_outlined,
+                              color: statusVoucher ? Colors.green : Colors.red,
+                              size: 20,
+                            ),
+                            const Text(
+                              ' Comprobante',
+                              style: TextStyle(
+                                fontFamily: 'Ubuntu-Regular',
+                                fontSize: 16,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sunat_vouchers/edit_voucher/edit_voucher.dart';
 import 'package:sunat_vouchers/home/home.dart';
 import 'package:sunat_vouchers/login/login.dart';
 import 'package:sunat_vouchers/new_voucher/new_voucher.dart';
@@ -49,6 +50,15 @@ GoRouter goRouter() {
             builder: (context, state) {
               final userId = state.pathParameters['userId']!;
               return NewVoucherPage(userId: userId);
+            },
+          ),
+          GoRoute(
+            name: 'editVoucher',
+            path: 'editVoucher/:userId/:voucherId',
+            builder: (context, state) {
+              final userId = state.pathParameters['userId']!;
+              final voucherId = state.pathParameters['voucherId']!;
+              return EditVoucherPage(userUid: userId, voucherId: voucherId);
             },
           ),
         ],
