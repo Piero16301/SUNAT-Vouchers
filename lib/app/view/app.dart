@@ -43,6 +43,36 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       theme: ThemeData(
+        useMaterial3: true,
+        primaryColor: const Color.fromRGBO(0, 97, 173, 1),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromRGBO(0, 97, 173, 1),
+          elevation: 0,
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            fontFamily: 'Ubuntu-Regular',
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          iconTheme: IconThemeData(color: Colors.white, size: 30),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromRGBO(0, 97, 173, 1),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            foregroundColor: const Color.fromRGBO(0, 97, 173, 1),
+          ),
+        ),
         snackBarTheme: SnackBarThemeData(
           contentTextStyle: const TextStyle(fontFamily: 'Ubuntu-Regular'),
           behavior: SnackBarBehavior.floating,
