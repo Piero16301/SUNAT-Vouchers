@@ -45,6 +45,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         primaryColor: const Color.fromRGBO(0, 97, 173, 1),
+        secondaryHeaderColor: const Color.fromRGBO(201, 0, 66, 1),
         appBarTheme: const AppBarTheme(
           backgroundColor: Color.fromRGBO(0, 97, 173, 1),
           elevation: 0,
@@ -52,10 +53,10 @@ class App extends StatelessWidget {
           titleTextStyle: TextStyle(
             fontFamily: 'Ubuntu-Regular',
             color: Colors.white,
-            fontSize: 20,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
-          iconTheme: IconThemeData(color: Colors.white, size: 30),
+          iconTheme: IconThemeData(color: Colors.white, size: 25),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(

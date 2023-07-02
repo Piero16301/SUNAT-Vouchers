@@ -23,7 +23,7 @@ class HomeView extends StatelessWidget {
             icon: const Icon(
               Icons.person,
               color: Colors.white,
-              size: 30,
+              size: 25,
             ),
             onPressed: () => context.pushNamed('profile'),
           ),
@@ -94,7 +94,7 @@ class HomeView extends StatelessWidget {
             'userId': FirebaseAuth.instance.currentUser!.uid,
           },
         ),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
         label: const Text(
           'Nuevo',
           style: TextStyle(

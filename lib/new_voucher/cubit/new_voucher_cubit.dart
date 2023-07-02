@@ -1,6 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:sunat_vouchers/models/models.dart';
+import 'package:uuid/uuid.dart';
 
 part 'new_voucher_state.dart';
 
@@ -38,6 +41,41 @@ class NewVoucherCubit extends Cubit<NewVoucherState> {
   }
 
   void changeAmount(String? amount) {
+    if (amount == '') return;
     emit(state.copyWith(amount: double.parse(amount ?? '0')));
+  }
+
+  void registerVoucher() {
+    // Validar formulario
+    if (!state.formKey!.currentState!.validate()) return;
+
+    emit(state.copyWith(status: NewVoucherStatus.loading));
+
+    try {
+      // Crear voucher
+      final voucher = Voucher(
+        id: const Uuid().v1(),
+        userUid: state.userId,
+        ruc: state.ruc,
+        socialReason: 'Por verificar',
+        voucherType: state.voucherType,
+        serial: state.serial,
+        number: state.number,
+        date: state.date!,
+        amount: state.amount,
+        statusRuc: false,
+        statusVoucher: false,
+      );
+
+      // Guardar comprobante en Firestore
+      FirebaseFirestore.instance
+          .collection('vouchers')
+          .doc(voucher.id)
+          .set(voucher.toJson());
+
+      emit(state.copyWith(status: NewVoucherStatus.success));
+    } catch (e) {
+      emit(state.copyWith(status: NewVoucherStatus.failure));
+    }
   }
 }

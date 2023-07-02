@@ -30,7 +30,7 @@ Map<String, dynamic> _$VoucherToJson(Voucher instance) => <String, dynamic>{
       'voucherType': instance.voucherType,
       'serial': instance.serial,
       'number': instance.number,
-      'date': instance.date.toIso8601String(),
+      'date': instance.date,
       'amount': instance.amount,
       'statusRuc': instance.statusRuc,
       'statusVoucher': instance.statusVoucher,
