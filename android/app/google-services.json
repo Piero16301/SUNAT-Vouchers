@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1058631573511:android:efd205623c210574fc8aa2",
         "android_client_info": {
-          "package_name": "com.example.verygoodcore.sunat_vouchers"
+          "package_name": "com.verify.sunat.vouchers"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "1058631573511-4jcmaujec7251s2npabi1fn6mo8hgvk6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.verygoodcore.sunat_vouchers",
+            "package_name": "com.verify.sunat.vouchers",
             "certificate_hash": "cb8a5e87dbb4cafb234040217337ea69940036af"
           }
         },

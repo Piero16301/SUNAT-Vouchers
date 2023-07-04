@@ -1,4 +1,4 @@
-package com.example.verygoodcore.sunat_vouchers
+package com.verify.sunat.vouchers
 
 import io.flutter.embedding.android.FlutterActivity
 

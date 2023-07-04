@@ -29,6 +29,7 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^9.1.2
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
   mocktail: ^0.3.0
@@ -52,3 +53,17 @@ flutter:
     - family: Ubuntu-Regular
       fonts:
         - asset: assets/fonts/Ubuntu-Regular.ttf
+
+flutter_launcher_icons:
+  image_path: "assets/images/app_icon.png"
+  android: true
+  image_path_android: "assets/images/app_icon.png"
+  ios: true
+  remove_alpha_ios: true
+  image_path_ios: "assets/images/app_icon.png"
+  web:
+    generate: false
+  windows:
+    generate: false
+  macos:
+    generate: false

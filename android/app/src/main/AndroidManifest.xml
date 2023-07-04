@@ -1,10 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.verygoodcore.sunat_vouchers">
+    package="com.verify.sunat.vouchers">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     
    <application
-        android:label="${appName}"
+        android:label="Validación de Comprobantes"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
