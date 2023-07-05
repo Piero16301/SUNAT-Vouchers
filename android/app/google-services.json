@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "1058631573511-o022qjgtjt5m38bpc1jhl079nm3crbfq.apps.googleusercontent.com",
+          "client_id": "1058631573511-piv0jsehpk619190i3odha0tgukqklis.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.verify.sunat.vouchers",
-            "certificate_hash": "cb8a5e87dbb4cafb234040217337ea69940036af"
+            "certificate_hash": "a13a54f94300db07340535071ac33f92bc5f1e57"
           }
         },
         {
