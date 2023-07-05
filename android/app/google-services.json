@@ -7,14 +7,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1058631573511:android:efd205623c210574fc8aa2",
+        "mobilesdk_app_id": "1:1058631573511:android:1a21282c8d0d7a11fc8aa2",
         "android_client_info": {
           "package_name": "com.verify.sunat.vouchers"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1058631573511-4jcmaujec7251s2npabi1fn6mo8hgvk6.apps.googleusercontent.com",
+          "client_id": "1058631573511-o022qjgtjt5m38bpc1jhl079nm3crbfq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.verify.sunat.vouchers",
