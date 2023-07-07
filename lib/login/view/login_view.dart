@@ -16,8 +16,23 @@ class LoginView extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 75),
-              child: Image.asset(
-                'assets/images/sunat_logo.png',
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    'assets/images/app_icon.png',
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Verificación de Comprobantes'.toUpperCase(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontFamily: 'Ubuntu-Bold',
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
             ),
             const GoogleSignInButtonLogin(),
