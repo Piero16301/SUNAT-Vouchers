@@ -138,8 +138,8 @@ class VoucherCardItemHome extends StatelessWidget {
   final String number;
   final DateTime date;
   final double amount;
-  final bool statusRuc;
-  final bool statusVoucher;
+  final String statusRuc;
+  final String statusVoucher;
 
   @override
   Widget build(BuildContext context) {
@@ -365,10 +365,16 @@ class VoucherCardItemHome extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              statusRuc
-                                  ? Icons.check_circle
-                                  : Icons.cancel_outlined,
-                              color: statusRuc ? Colors.green : Colors.red,
+                              statusRuc == 'Pendiente'
+                                  ? Icons.pending_actions_outlined
+                                  : statusRuc == 'Correcto'
+                                      ? Icons.check_circle
+                                      : Icons.cancel_outlined,
+                              color: statusRuc == 'Pendiente'
+                                  ? Colors.orange
+                                  : statusRuc == 'Correcto'
+                                      ? Colors.green
+                                      : Colors.red,
                               size: 20,
                             ),
                             const Text(
@@ -388,10 +394,16 @@ class VoucherCardItemHome extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              statusVoucher
-                                  ? Icons.check_circle
-                                  : Icons.cancel_outlined,
-                              color: statusVoucher ? Colors.green : Colors.red,
+                              statusVoucher == 'Pendiente'
+                                  ? Icons.pending_actions_outlined
+                                  : statusVoucher == 'Correcto'
+                                      ? Icons.check_circle
+                                      : Icons.cancel_outlined,
+                              color: statusVoucher == 'Pendiente'
+                                  ? Colors.orange
+                                  : statusVoucher == 'Correcto'
+                                      ? Colors.green
+                                      : Colors.red,
                               size: 20,
                             ),
                             const Text(

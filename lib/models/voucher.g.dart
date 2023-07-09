@@ -17,8 +17,8 @@ Voucher _$VoucherFromJson(Map<String, dynamic> json) {
     number: json['number'] as String? ?? '',
     date: (json['date'] as Timestamp? ?? Timestamp.now()).toDate(),
     amount: (json['amount'] as num).toDouble(),
-    statusRuc: json['statusRuc'] as bool,
-    statusVoucher: json['statusVoucher'] as bool,
+    statusRuc: json['statusRuc'] as String? ?? '',
+    statusVoucher: json['statusVoucher'] as String? ?? '',
   );
 }
 

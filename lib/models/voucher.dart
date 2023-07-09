@@ -59,10 +59,10 @@ class Voucher extends Equatable {
   final double amount;
 
   /// Estado del RUC del emisor
-  final bool statusRuc;
+  final String statusRuc;
 
   /// Estado del comprobante
-  final bool statusVoucher;
+  final String statusVoucher;
 
   @override
   List<Object?> get props => [

@@ -57,14 +57,14 @@ class NewVoucherCubit extends Cubit<NewVoucherState> {
         id: const Uuid().v1(),
         userUid: state.userId,
         ruc: state.ruc,
-        socialReason: 'Por verificar',
+        socialReason: 'Consultando...',
         voucherType: state.voucherType,
         serial: state.serial,
         number: state.number,
         date: state.date!,
         amount: state.amount,
-        statusRuc: false,
-        statusVoucher: false,
+        statusRuc: 'Pendiente',
+        statusVoucher: 'Pendiente',
       );
 
       // Guardar comprobante en Firestore

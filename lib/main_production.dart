@@ -27,3 +27,9 @@ Future<void> main() async {
     ),
   );
 }
+
+// Agregar SHA1 y SHA256 en la consola de Firebase (Producción)
+// .\keytool.exe -list -v -keystore C:\Users\piero\keystore.jks -alias upload
+
+// Agregar SHA1 y SHA256 en la consola de Firebase (Desarrollo)
+// .\keytool.exe -list -v -keystore C:\Users\piero\.android\debug.keystore

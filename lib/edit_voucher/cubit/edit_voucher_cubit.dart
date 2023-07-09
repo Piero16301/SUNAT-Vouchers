@@ -88,14 +88,14 @@ class EditVoucherCubit extends Cubit<EditVoucherState> {
           .doc(state.voucherId)
           .update({
         'ruc': state.ruc,
-        'socialReason': 'POR VERIFICAR',
+        'socialReason': 'Verificando...',
         'voucherType': state.voucherType,
         'serial': state.serial,
         'number': state.number,
         'date': state.date,
         'amount': state.amount,
-        'statusRuc': false,
-        'statusVoucher': false,
+        'statusRuc': 'Pendiente',
+        'statusVoucher': 'Pendiente',
       });
 
       emit(state.copyWith(updateStatus: UpdateStatus.success));
