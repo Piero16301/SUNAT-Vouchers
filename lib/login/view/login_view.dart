@@ -36,6 +36,18 @@ class LoginView extends StatelessWidget {
               ),
             ),
             const GoogleSignInButtonLogin(),
+            const SizedBox(height: 50),
+            const Text(
+              'Esta aplicación está hecha exclusivamente con fines académicos '
+              'y no debe ser utilizada como una fuente de información oficial, '
+              'ya que esta aplicación no representa a ninguna institución '
+              'gubernamental.',
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontFamily: 'Ubuntu-Regular',
+                fontSize: 14,
+              ),
+            ),
           ],
         ),
       ),
