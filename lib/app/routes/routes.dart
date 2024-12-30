@@ -14,11 +14,13 @@ GoRouter goRouter() {
   return GoRouter(
     redirect: (context, state) {
       if (FirebaseAuth.instance.currentUser != null) {
-        return state.location == '/login' ? '/' : null;
+        return state.uri.toString() == '/login' ? '/' : null;
       } else {
         if (unauthenticatedRoutes.any(
           (value) {
-            if (state.location != '/') return state.location.contains(value);
+            if (state.uri.toString() != '/') {
+              return state.uri.toString().contains(value);
+            }
             return false;
           },
         )) {

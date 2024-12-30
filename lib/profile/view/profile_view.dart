@@ -25,7 +25,7 @@ class ProfileView extends StatelessWidget {
           actions: [
             SignedOutAction((context) {
               context.goNamed('login');
-            })
+            }),
           ],
         ),
       ),
