@@ -11,7 +11,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     try {
       await Future<void>.delayed(const Duration(seconds: 2));
       emit(state.copyWith(status: ProfileStatus.success));
-    } catch (_) {
+    } on Exception {
       emit(state.copyWith(status: ProfileStatus.failure));
     }
   }

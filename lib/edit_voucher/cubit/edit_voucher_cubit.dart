@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
@@ -42,7 +44,7 @@ class EditVoucherCubit extends Cubit<EditVoucherState> {
           amount: voucher.amount,
         ),
       );
-    } catch (e) {
+    } on Exception {
       emit(state.copyWith(status: EditVoucherStatus.failure));
     }
   }
@@ -83,23 +85,25 @@ class EditVoucherCubit extends Cubit<EditVoucherState> {
 
     try {
       // Actualizar datos del comprobante
-      FirebaseFirestore.instance
-          .collection('vouchers')
-          .doc(state.voucherId)
-          .update({
-        'ruc': state.ruc,
-        'socialReason': 'Verificando...',
-        'voucherType': state.voucherType,
-        'serial': state.serial,
-        'number': state.number,
-        'date': state.date,
-        'amount': state.amount,
-        'statusRuc': 'Pendiente',
-        'statusVoucher': 'Pendiente',
-      });
+      unawaited(
+        FirebaseFirestore.instance
+            .collection('vouchers')
+            .doc(state.voucherId)
+            .update({
+              'ruc': state.ruc,
+              'socialReason': 'Verificando...',
+              'voucherType': state.voucherType,
+              'serial': state.serial,
+              'number': state.number,
+              'date': state.date,
+              'amount': state.amount,
+              'statusRuc': 'Pendiente',
+              'statusVoucher': 'Pendiente',
+            }),
+      );
 
       emit(state.copyWith(updateStatus: UpdateStatus.success));
-    } catch (e) {
+    } on Exception {
       emit(state.copyWith(updateStatus: UpdateStatus.failure));
     }
   }

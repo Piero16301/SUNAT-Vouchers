@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,7 @@ class LoginView extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  const SizedBox(height: 100),
                   Image.asset(
                     'assets/images/app_icon.png',
                   ),
@@ -49,6 +52,7 @@ class LoginView extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
+            const SizedBox(height: 50),
           ],
         ),
       ),
@@ -63,27 +67,28 @@ class GoogleSignInButtonLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 110,
+    return Expanded(
       child: SignInScreen(
         actions: [
           AuthStateChangeAction<SignedIn>((context, signedIn) {
             debugPrint('User: ${signedIn.user}');
 
             // Guardar datos del usuario en Firestore
-            FirebaseFirestore.instance
-                .collection('users')
-                .doc(signedIn.user!.uid)
-                .set({
-              'uid': signedIn.user!.uid,
-              'displayName': signedIn.user!.displayName,
-              'email': signedIn.user!.email,
-              'emailVerified': signedIn.user!.emailVerified,
-              'isAnonymous': signedIn.user!.isAnonymous,
-              'photoURL': signedIn.user!.photoURL,
-              'providerId': signedIn.user!.providerData[0].providerId,
-              'providerUid': signedIn.user!.providerData[0].uid,
-            });
+            unawaited(
+              FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(signedIn.user!.uid)
+                  .set({
+                    'uid': signedIn.user!.uid,
+                    'displayName': signedIn.user!.displayName,
+                    'email': signedIn.user!.email,
+                    'emailVerified': signedIn.user!.emailVerified,
+                    'isAnonymous': signedIn.user!.isAnonymous,
+                    'photoURL': signedIn.user!.photoURL,
+                    'providerId': signedIn.user!.providerData[0].providerId,
+                    'providerUid': signedIn.user!.providerData[0].uid,
+                  }),
+            );
 
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -101,20 +106,23 @@ class GoogleSignInButtonLogin extends StatelessWidget {
             debugPrint('User: ${signedUp.credential.user}');
 
             // Guardar datos del usuario en Firestore
-            FirebaseFirestore.instance
-                .collection('users')
-                .doc(signedUp.credential.user!.uid)
-                .set({
-              'uid': signedUp.credential.user!.uid,
-              'displayName': signedUp.credential.user!.displayName,
-              'email': signedUp.credential.user!.email,
-              'emailVerified': signedUp.credential.user!.emailVerified,
-              'isAnonymous': signedUp.credential.user!.isAnonymous,
-              'photoURL': signedUp.credential.user!.photoURL,
-              'providerId':
-                  signedUp.credential.user!.providerData[0].providerId,
-              'providerUid': signedUp.credential.user!.providerData[0].uid,
-            });
+            unawaited(
+              FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(signedUp.credential.user!.uid)
+                  .set({
+                    'uid': signedUp.credential.user!.uid,
+                    'displayName': signedUp.credential.user!.displayName,
+                    'email': signedUp.credential.user!.email,
+                    'emailVerified': signedUp.credential.user!.emailVerified,
+                    'isAnonymous': signedUp.credential.user!.isAnonymous,
+                    'photoURL': signedUp.credential.user!.photoURL,
+                    'providerId':
+                        signedUp.credential.user!.providerData[0].providerId,
+                    'providerUid':
+                        signedUp.credential.user!.providerData[0].uid,
+                  }),
+            );
 
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(

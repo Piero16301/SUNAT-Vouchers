@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "1058631573511",
     "project_id": "sunat-vouchers",
-    "storage_bucket": "sunat-vouchers.appspot.com"
+    "storage_bucket": "sunat-vouchers.firebasestorage.app"
   },
   "client": [
     {
@@ -14,11 +14,27 @@
       },
       "oauth_client": [
         {
+          "client_id": "1058631573511-9ct1il12rnaju43t9t53rtetckj3mfes.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.verify.sunat.vouchers",
+            "certificate_hash": "cb8a5e87dbb4cafb234040217337ea69940036af"
+          }
+        },
+        {
           "client_id": "1058631573511-piv0jsehpk619190i3odha0tgukqklis.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.verify.sunat.vouchers",
             "certificate_hash": "a13a54f94300db07340535071ac33f92bc5f1e57"
+          }
+        },
+        {
+          "client_id": "1058631573511-vmh376p37hknkrjsh2h3c2gpac25r99o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.verify.sunat.vouchers",
+            "certificate_hash": "3e8ebff00ff7cffc4afeb5da012fe655b3063635"
           }
         },
         {

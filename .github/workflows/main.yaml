@@ -1,17 +1,61 @@
-name: sunat_vouchers
+name: sunat_vouchers_main
+# This workflow runs on pushes and pull requests to the main branch.
+# It uses the semantic pull request workflow from VeryGoodOpenSource.
 
 concurrency:
-  group: $-$
+  group: main-$-$
   cancel-in-progress: true
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   semantic-pull-request:
+    name: "📝 Semantic"
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
+    permissions:
+      contents: read
+
+  spell-check:
+    name: "🔍 Spell Check"
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
+    with:
+      includes: |
+        **/*.md
+      modified_files_only: false
+
+  tests:
+    name: "🧪 Run Tests"
+    needs: [semantic-pull-request, spell-check]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v5
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - name: 📦 Install Dependencies
+        run: |
+          flutter pub global activate very_good_cli
+          very_good packages get --recursive
+      - name: 🧪 Run Tests
+        run: very_good test --coverage
+      - name: 📊 Generate Coverage Badge
+        run: |
+          dart run test_coverage_badge
+      - name: 📊 Upload Coverage Report
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet coverage_badge.svg; then
+            echo "No changes to coverage badge, skipping commit"
+          else
+            git add coverage_badge.svg
+            git commit -m "Update coverage badge [skip ci]"
+            git push origin main
+          fi

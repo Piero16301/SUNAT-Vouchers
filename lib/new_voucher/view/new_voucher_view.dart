@@ -363,7 +363,7 @@ class DateNewVoucher extends StatelessWidget {
                     child: child!,
                   ),
                 );
-                // ignore: use_build_context_synchronously
+                // ignore: use_build_context_synchronously // The context is still valid here as the widget is not disposed.
                 context.read<NewVoucherCubit>().changeDate(date);
               },
               icon: const Icon(Icons.calendar_today_outlined),

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sunat_vouchers/edit_voucher/edit_voucher.dart';
@@ -15,7 +17,11 @@ class EditVoucherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => EditVoucherCubit()..loadVoucherData(userUid, voucherId),
+      create: (_) {
+        final cubit = EditVoucherCubit();
+        unawaited(cubit.loadVoucherData(userUid, voucherId));
+        return cubit;
+      },
       child: const EditVoucherView(),
     );
   }

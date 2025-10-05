@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
@@ -68,13 +70,15 @@ class NewVoucherCubit extends Cubit<NewVoucherState> {
       );
 
       // Guardar comprobante en Firestore
-      FirebaseFirestore.instance
-          .collection('vouchers')
-          .doc(voucher.id)
-          .set(voucher.toJson());
+      unawaited(
+        FirebaseFirestore.instance
+            .collection('vouchers')
+            .doc(voucher.id)
+            .set(voucher.toJson()),
+      );
 
       emit(state.copyWith(status: NewVoucherStatus.success));
-    } catch (e) {
+    } on Exception {
       emit(state.copyWith(status: NewVoucherStatus.failure));
     }
   }

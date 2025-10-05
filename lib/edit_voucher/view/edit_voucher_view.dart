@@ -411,7 +411,7 @@ class DateEditVoucher extends StatelessWidget {
                     child: child!,
                   ),
                 );
-                // ignore: use_build_context_synchronously
+                // ignore: use_build_context_synchronously // It's safe here because the context is not disposed.
                 context.read<EditVoucherCubit>().changeDate(date);
               },
               icon: const Icon(Icons.calendar_today_outlined),
